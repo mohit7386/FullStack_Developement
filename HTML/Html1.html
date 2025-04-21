@@ -101,6 +101,75 @@
         <li>Future</li>
     </ol>
 
+    <h2><u>Nested List</u> </h2>   <!--List ke andar list ko kehte hain nested list-->
+    <ul>
+        <li>Frontend
+          <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </li>
+        <li>Backend
+          <ul>
+            <li>Node.js</li>
+            <li>Express</li>
+          </ul>
+        </li>
+      </ul>
+      <h2><u>Attributes of ordered list</u></h2>
+      <ol type="A">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Javascript</li>
+        <li>Tailwind</li>
+        <li>React</li>
+      </ol>
+      <h2><u>Button</u></h2>
+      <p>Button website ka ek action trigger karta hai.
+        (Submit form, Login, Load Data, kuch bhi.)
+    <h3>Real Usage: </h3>
+    <ul>
+    <li>Button me click hone ke baad ya to page redirect hota hai</li>
+    
+    <li>Ya koi action hota hai jaise data submit karna</li>
+    
+    <li>JavaScript ke saath events handle karte hain later</li>
+</ul>
+    </p>
+    <button type="submit">Click Me</button>
+    <h2><u>Forms</u></h2>
+    <form action="/submit-url" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"placeholder="Enter your username">
+        
+        <br><br>
+      
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"placeholder="Enter your email">
+      
+        <br><br>
+        <label for="gender">Gender: </label>
+        <input type="radio"id="male" name="gender"value="male">Male
+        <input type="radio"id="female" name="gender" value="female">Female
+        <br><br>
+       <label for="textarea">Message: </label><br>
+       <textarea id="textarea" name="textarea" rows="5"cols="40"></textarea>
+       <br><br>
+       <label for="Country">Country</label>
+       <select id="Country"name="Country">
+        <option value="Select">Select</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="China">China</option>
+        <option value="Japan">Japan</option>
+       </select>
+       <br><br>
+        <button type="submit">Register</button>
+        
+      </form>
+      
+
 
 </body>
 </html>

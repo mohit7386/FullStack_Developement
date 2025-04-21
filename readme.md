@@ -115,6 +115,23 @@ Actions perform karwane ke liye — jaise "Submit", "Click me".
 7. Forms (<form>, <input>, <label>, <textarea>, <select>)
 User se data lena — jaise login/signup form.
 
+Attributes in Button:
+
+Attribute	Kaam:->
+type="submit"	Form submit karne ke liye (default type in forms)
+type="reset"	Form reset karne ke liye
+type="button"	Normal button (kuch karwane ke liye with JavaScript)
+
+Example:
+
+<form>
+  <input type="text" placeholder="Enter Name">
+  <button type="submit">Submit</button>
+  <button type="reset">Clear</button>
+</form>
+
+Forms ->
+
 <form>
   <label for="name">Name:</label>
   <input type="text" id="name" name="name">
@@ -124,6 +141,46 @@ User se data lena — jaise login/signup form.
 
   <button type="submit">Submit</button>
 </form>
+
+ Important Tags:
+
+Tag	Purpose
+<form>	Form ka container
+<label>	User ko input field ka description dikhana
+<input>	Single line input field
+<textarea>	Multi-line input (comments, messages)
+<select>	Dropdown banane ke liye
+<option>	Select ke andar ek ek item
+📌 Input Types:
+
+Type	                Usage
+text	     ->    Normal text field
+email	     ->    Email field (valid email format check karta hai)
+password	 ->    Password field (text hide karta hai)
+checkbox	 ->    Multiple select karne ke liye
+radio	     ->    Single select among options
+file	     ->    File upload karne ke liye
+
+Example:
+
+<label for="gender">Gender:</label>
+<input type="radio" id="male" name="gender" value="male"> Male
+<input type="radio" id="female" name="gender" value="female"> Female
+
+📌 textarea Example:
+
+<label for="message">Message:</label>
+<textarea id="message" name="message" rows="5" cols="30"></textarea>
+
+📌 select Example:
+
+<label for="country">Country:</label>
+<select id="country" name="country">
+  <option value="india">India</option>
+  <option value="usa">USA</option>
+  <option value="uk">UK</option>
+</select>
+
 
 📚 Step 4: Special Concepts
 Semantic Tags (Very Important for Real-World)
