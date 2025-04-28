@@ -10,3 +10,13 @@ p{
 h1{   /*yahan par h1 ko red set kiya hai but external CSS ke style ko override kar deti hai internal and inline CSS that's why red color apply nahi ho raha hai*/
     color: red;  
 }
+.mohit{
+    color: black;
+}
+#lucky{
+    color: brown;
+}
+li [draggable]{
+    color: green;
+}
+/*yahan humne h1 element selector class selector attribute selector and id selector sab use krke dekh liya but sabse jyada specificity id ki hoti hai ye sabse jyada specific hota hai aur uss particular element ke saare styles override kar dega*/
