@@ -193,3 +193,293 @@ Tag	Purpose
 <section>	Content ka alag section.
 <article>	Blog post ya article content.
 <nav>	Navigation links ke liye.
+------------------------------------------------------------------------------------
+ HTML Tables (Jo reh gaya tha)
+Table ka use hota hai data ko row aur column me organize karne ke liye.
+
+Basic Table Syntax:
+
+<table border="1">
+  <tr>  <!-- Table Row -->
+    <th>Name</th>   <!-- Table Header -->
+    <th>Age</th>
+  </tr>
+
+  <tr>
+    <td>John</td>  <!-- Table Data -->
+    <td>25</td>
+  </tr>
+
+  <tr>
+    <td>Alice</td>
+    <td>30</td>
+  </tr>
+</table>
+
+Output:
+
+Name	Age
+John	25
+Alice	30
+Important Tags in Table:
+
+Tag	Meaning
+<table>	Table banata hai
+<tr>	Table Row
+<th>	Table Heading (Bold & Centered)
+<td>	Table Data
+
+2. Audio in HTML
+Audio embed karne ke liye <audio> tag use hota hai.
+
+Syntax:
+
+<audio controls>
+  <source src="song.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+
+✅ Important:
+
+controls likhna zaruri hai, warna player dikhai nahi dega.
+
+<source> tag se hum file attach karte hain.
+
+3. Video in HTML
+Video embed karne ke liye <video> tag use hota hai.
+
+Syntax:
+
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+✅ Important:
+
+controls likhna compulsory.
+
+Width height define kar sakte ho.
+
+Format mostly .mp4 ka use hota hai.
+
+4. iFrame in HTML
+Iframe ka use kisi doosri website, video, map ko apni website me embed karne ke liye hota hai.
+
+Syntax:
+<iframe src="https://www.wikipedia.org/" width="600" height="400"></iframe>
+
+✅ Example: YouTube Video Embed
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+
+✅ Important:
+
+src me jo cheez dikhani hai uska link aata hai.
+
+width, height se size control karte hain.
+
+allowfullscreen se full screen enable hota hai.
+
+5. Miscellaneous - Other important things
+
+Tag	Use
+<abbr>	Short form ke liye. Hover pe pura naam dikhega
+<mark>	Highlight karne ke liye
+<progress>	Progress bar dikhane ke liye
+<details> aur <summary>	Collapsible content banane ke liye
+
+📢 Short Examples:
+
+1. Abbreviation (<abbr>):
+
+<p><abbr title="World Health Organization">WHO</abbr> is an organization.</p>
+(Hover karoge to "World Health Organization" dikhega.)
+
+2. Mark (<mark>):
+
+<p>This is a <mark>highlighted</mark> text.</p>
+
+3. Progress Bar:
+
+<progress value="70" max="100"></progress>
+(Dekhega jaise 70% complete.)
+
+4. Details + Summary:
+<details>
+  <summary>Click to expand</summary>
+  <p>This is hidden content revealed on click.</p>
+</details>
+===========================================================================================
+CSS Kya Hota Hai?
+🔵 CSS ka full form hai:
+
+Cascading Style Sheets
+
+🔵 CSS ka kaam hota hai:
+
+HTML structure ko style dena (colors, layouts, size, animation, etc.)
+
+Jaise ki:
+
+Font ka size change karna
+
+Background color dena
+
+Borders lagana
+
+Layout banana
+
+Hover effect banana
+
+Animation banana
+
+HTML ➔ Structure
+CSS ➔ Style / Decoration
+
+Step 2: CSS Lagaane ke 3 tareeke hote hain:
+
+Tareeka	Kya hota hai?	Example
+1. Inline CSS	Direct HTML ke andar style dena	<p style="color:red;">Hello</p>
+2. Internal CSS	<style> tag ke andar likhna	<style> p { color: blue; } </style>
+3. External CSS	Alag file bana ke link karna	<link rel="stylesheet" href="style.css">
+✅ Industry me External CSS use karte hain (professional method)
+
+Step 3: CSS Syntax kaise likhte hain?
+🔵 CSS syntax ka basic structure:
+
+selector {
+   property: value;
+}
+
+Example:
+
+p {
+   color: red;
+   font-size: 20px;
+}
+
+Yaani:
+
+p ➔ kis element ko style dena hai (selector)
+
+color ➔ kya property change karni hai
+
+red ➔ property ki value kya deni hai
+
+Step 4: Selectors in CSS
+Selectors se hum decide karte hain kisko style dena hai.
+
+
+Selector Type	                     Example	              Meaning
+Universal	                          * {}	         Sabhi elements ko style
+Element	                            p {}           Specific tag ko
+Class	                     .className {}	         Class wale elements ko
+ID	                          #idName {}	         ID wale elements ko
+Grouping	                 h1, p, div {}	         Ek sath multiple elements ko
+Nested	                        div p {}	         Div ke andar ke p ko
+
+✅ Class and ID ka use industry me hota hai sabse jyada.
+
+Step 5: Properties (Most Important CSS Properties)
+Basic Styling Properties:
+color
+
+background-color
+
+font-size
+
+font-family
+
+font-weight
+
+text-align
+
+margin
+
+padding
+
+border
+
+width
+
+height
+
+Layout / Positioning Properties:
+display
+
+flex
+
+grid
+
+position
+
+top, left, right, bottom
+
+z-index
+
+Others:
+box-shadow
+
+border-radius
+
+opacity
+
+overflow
+
+transition
+
+transform
+
+Step 6: CSS Example (Small Demo)
+HTML:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Welcome Bhai!</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
+
+style.css:
+
+body {
+  background-color: #f0f0f0;
+}
+
+h1 {
+  color: darkblue;
+  text-align: center;
+}
+
+p {
+  color: green;
+  font-size: 18px;
+}
+==================================================================================================
+CSS Specificity:- 
+Inline - Most Powerful override all the Styling
+Internal - Least powerful then Inline CSS but override the styling of the External CSS
+External - Very Lower Powerful but this is fully used in industries and creating multipages websites.
+
+CSS Specificity defines with the help of these rules:-> 
+1- Position
+2- Specificity
+3- Type
+4- Importance
+
+Position->    
+  li{
+  color: red;
+  color: orange;   //so here orange baad me hai to position iski lower hai to rule of CSS Specificity jo lower style hoga wahi style mana jaayega aur wahi color add ho jaayega.
+}
+
+Specificity->
+
+
+

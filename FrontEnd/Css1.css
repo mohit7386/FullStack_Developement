@@ -1,0 +1,12 @@
+ul{
+    color: red !important;  /*agar important laga diya to ye saare rules saari specificity ko override kar dega*/
+    color: orange;   /*here CSS position rule of CSS specificity apply hua hai yahan pe jisse jiski position lower hogi wahi style apply hoga yahan pe orange baad me tha to orangle style apply hua*/
+    font-size: 20px;
+}
+p{
+    background-color: lightgreen;
+    color: blue;
+}
+h1{   /*yahan par h1 ko red set kiya hai but external CSS ke style ko override kar deti hai internal and inline CSS that's why red color apply nahi ho raha hai*/
+    color: red;  
+}

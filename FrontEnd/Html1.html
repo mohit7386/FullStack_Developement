@@ -8,10 +8,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webpage</title>
+    <!--External CSS Linking isme hum new Css file banake usko link karte hain aur edit karte hain apne page ko isko hi industry me use kiya jata hai heavy pages ko build karne ke liye hum bhi isi ko use karenge-->
+    <link rel="stylesheet" href="Css1.css">
+    <!--Internal CSS > Jab Single page website ho tab aap isko use kar sakte hain-->
+    <style>
+      h2 , h1{
+        color: blue;
+      }
+    </style>
 </head>
 <body>
     <h1><u>Webpage</u></h1> <!--Heading h1 is the bigger heading and h2 smaller than h1 and h3 smaller than h2 and so on....-->
-    <p>A web page is a single document or page displayed on the internet, accessible through a web browser, and containing text, images, videos, and links, all part of a larger collection of pages that make up a website. Navigation
+    <!--This is called Inline CSS-- > jisko hum ek line me tag ke andar lagayein wo inline CSS hai kisi tag ke andar directly style dena but ye industry me use nahi hoti because wahan bade level pe project baanne hote hain jisme ye useful nahi hai ❌❌--->
+    <p style="color: rgb(247, 142, 14); font-size: 20px;">A web page is a single document or page displayed on the internet, accessible through a web browser, and containing text, images, videos, and links, all part of a larger collection of pages that make up a website. Navigation
         Main article: Web navigation
         Each web page is identified by a distinct Uniform Resource Locator (URL). When the user inputs a URL into their web browser, the browser retrieves the necessary content from a web server and then transforms it into an interactive visual representation on the user's screen.[2]
         
@@ -138,7 +147,7 @@
     <li>JavaScript ke saath events handle karte hain later</li>
 </ul>
     </p>
-    <button type="submit">Click Me</button>
+    <button style="background-color: lightblue; text-align: center; color: blue;" type="submit">Click Me</button>
     <h2><u>Forms</u></h2>
     <form action="/submit-url" method="POST">
         <label for="username">Username:</label> <!---label is just like a tag and tells the user this is something so that user can understand what to fill in the box-->
@@ -242,8 +251,18 @@ Semantic Example:
 <video width="780" height="560"controls autoplay muted> <!--kuch browsers me autoplay directly kaam karta hai but kuch me humein like chrome me humein likhna pahdta hai muted jab muted hogi video tabhi jaake ye autoplay karega so when you want to autoplaying your video when user refresh the page then you need to put the muted with autoplay attribute-->
   <source src="./VID-20230612-WA0043.mp4"type="video/mp4">
 </video>
-      
-
-
+<br><br>
+<h2><u>iFrame tag</u></h2>
+<p>Iframe ka use kisi doosri website, video, map ko apni website me embed karne ke liye hota hai.</p>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.757474159626!2d77.28473507535858!3d28.637029975662283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb5617a16337%3A0x7f752156a2eb6f31!2sNirman%20Vihar%20Metro%20Station!5e0!3m2!1sen!2sin!4v1745381877877!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<h2><u>Abbreviation Tag</u></h2>
+<p><abbr title="World Health Organisation">WHO</abbr> -> This is abbreviation tag when you hover on it this will show the details</p>
+<progress value="70" max="100"></progress>
+<h2><u>Details Tag</u></h2>
+<p>This is details tag which is used to show the hidden detail in drop down</p>
+<details>
+  <summary>Click to expand</summary>
+  <p>This is hidden content revealed on click.</p>
+</details>
 </body>
 </html>
