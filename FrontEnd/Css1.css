@@ -8,15 +8,46 @@ p{
     color: blue;
 }
 h1{   /*yahan par h1 ko red set kiya hai but external CSS ke style ko override kar deti hai internal and inline CSS that's why red color apply nahi ho raha hai*/
-    color: red;  
+    color: red;  /*Element Selector*/
 }
-.mohit{
+.mohit{ /* Class Selector*/
     color: black;
 }
-#lucky{
+#lucky{  /*ID Selector */
     color: brown;
 }
-li [draggable]{
+li [draggable]{ 
     color: green;
 }
 /*yahan humne h1 element selector class selector attribute selector and id selector sab use krke dekh liya but sabse jyada specificity id ki hoti hai ye sabse jyada specific hota hai aur uss particular element ke saare styles override kar dega*/
+/*{ /*This is a universal selector jisse saare style override ho jaate hain all elements in the page sabko target krke style kar deta hai
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0; 
+    
+    Use Case:- Sabka margin and padding reset karne ke liye commonly use hota hai
+}*/
+ul , li { /*Group Selector - Jab multiple selectors ko ek hi style dena ho tab use karte hain*/
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+}
+div.div-tag p {  /*Ek element ke andar agar doosra element ho to agar usse style karna ho to aisa karte hain aur isko 'Descendant Selector' kehte hain aur isme dono elements ke beech me space rehta hai aur comma ka use nahi karte hain because comma hum group selector me lagate hain jisme ki humein ek saath saare elements ko style dena hota hai isiliye hum aisa karte hain*/
+    background-color: lightgreen;
+    color: black;
+    font-style: italic;
+    font-size: 20px;
+    padding: 20px;
+    border: 2px solid black;
+    text-align: justify;
+}
+ul > li{ /* Child Selector -> ye use hota hai sirf direct child ko style karne ke liye jo bhi element ke child ko style karna hai wo direct child hona chahiye tabhi ye style work karta hai otherwise nahi karta hai */
+    list-style-type: square;
+}
+h1 + p{ /*Adjacent Sibling Selector --> Ye sibling selector hai jiska matlab hota hai ki jo element hai uske turant baad wala jo sibling hoga bas wahi style hogaa chahein uske neeche aur bhi ho wo sab igmore kar diye jayenge bas turant baad wala jo hai wahi style hoga but bas dono same parent ke andar hone chahiye */
+    color: red;
+}
+.general-sibling h1 ~ p{  /*general Sibling Selector --> isme element ke baad jo bhi sibling hoga sab par ye style applied hoga but bas same parent me hona chahiye baki sab sahi hai */
+    background-color: lightcoral;
+    border: 2px solid black;
+}
