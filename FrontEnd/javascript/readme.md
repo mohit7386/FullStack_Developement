@@ -181,6 +181,8 @@ src = "/js/script.js"
 Without using any path:
 src = "script.js"
 
+'defer' likhne se browser HTML load hone ke sath-sath script ko background mein download karta rehta hai aur HTML load hone ke baad hi JS ko run karta hai -> <script src="right.js" defer></script>
+
 Console in JavaScript:-
 
 The console object provides access to the browser's debugging console (or terminal in Node.js). It is used to log information, debug code, and interact with the runtime environment during development.
@@ -303,7 +305,7 @@ Re-assign YES: Iske andar ka saaman (value) aap badal sakte ho.
 let username = "Raju";
 // let username = "Shyam"; // ERROR! JavaScript bolega: "Bhai, username pehle se bana hai."
 
-username = "Baburao"; // Yeh chalega! Value update ho gayi.
+username = "Baburao"; // Yeh chalega! Value update ho gayi. value ko aap update to kar sakte ho but same variable ko aap dubara declare nahi kar sakte.
 console.log(username); // Output: Baburao
 
 3. const (Constant / Strong-Headed)
@@ -317,7 +319,142 @@ Re-assign NO: Iske andar ki value kabhi change nahi ho sakti.
 const userEmail = "raju@gmail.com";
 // userEmail = "shyam@gmail.com"; // ERROR! Typeerror: Assignment to constant variable.
 
+Var - Function scoped
+let - Block Scoped 
+Const - Block Scoped 
+Both are block scoped variables so the benefit is we can create variable with same name in different different scopes.
 
+--Rules for Naming Convention in javascript--
+1- Variable names are case sensitive means aman & Aman both have different meaning in javascript.
+2- letter , _(underscore) , $ should be first character.
+3- letters, digits, underscore(_), and $ is allowed.
+4- Reserved Words cannot be variable names.
+5- We are using only camel case which means -> first letter is in small case and second letter is in capital case.
+example - fullName , lastName , className , isFollow , totalPrice.
+-----------------------------------------------------------------------------------------------------------------------------
+x = null; - means declare kiya hai variable but humne jaanke usko khali raakha hai.
+y = undefined; - means variable declare to kiya hai but usme koi value store nhi ki hai so it gives undefined error.
+-----------------------------------------------------------------------------------------------------------------------------
+JAVASCRIPT DATA TYPES:-
 
+JavaScript data types define what kind of values a variable can hold and how those values behave in a program. They determine how data is stored in memory and how operations like comparison, calculation, and conversion work.
 
+Each data type has its own methods and operations that control how it can be used.
+Understanding data types helps prevent errors and makes code more efficient and reliable.
+JavaScript Data Type Categories
+JavaScript data types are categorized into Primitive and Non-Primitive types
 
+Primitive Data Types:-
+
+1- Number
+2- String
+3- Boolean
+4- Null
+5- Undefined
+6- Symbol
+7- BigInt
+
+Non-Primitive Data types:-
+
+1- Object
+2- Arrays
+3- Function
+4- Date Object
+5- Regular Expression
+
+Type Conversion and Type Coercion in JavaScript:-
+
+Data types in JavaScript are flexible due to which the type of the variables can be changed when the program runs. Type Conversion and Type Coercion are the two ways through which we can change the data type of the variables from one type to the other.
+
+Type Conversion:-
+
+Type Conversion is the process in JavaScript in which the data type of the variables is converted from one type to another type manually. This is also known as explicit type casting.
+
+1- Performed manually by the programmer.
+2- Uses built-in JavaScript methods like Number(), String(), and Boolean().
+3- Ensures control over data types in code.
+
+Performing type conversion:-
+
+Performing type conversion means changing a value from one data type to another, such as converting strings, numbers, or booleans when needed in a program.
+
+1. String to Number:
+
+We can convert a string into numbers using the Number() function, parseInt(), and parseFloat() methods.
+
+let s = "123";
+let n = Number(s);  // Converts string to number
+console.log(n);
+
+2. Number to String:
+
+We can convert a number into a string using String() function or we can concatenate it with an empty string("").
+
+let n = 123;
+let s = String(n);  //Converts number to string
+console.log(s);
+
+3. Boolean to Number:
+
+We can convert a boolean into a number using Number(), so true becomes 1 and false becomes 0.
+
+let bool = true;
+let n = Number(bool);  //Converts boolean to number
+console.log(n);
+
+4. Boolean to String:
+
+We can convert boolean into string using String() or by concatenating it with an empty string.
+
+let bool = true;
+let s = String(bool);  //Converts boolean to string
+console.log(s);
+
+Type Coercion:-
+
+Type coercion is the automatic conversion of one data type to another by JavaScript during operations. This is also known as implicit type casting.
+
+1- Performed automatically by JavaScript.
+2- Happens mostly in comparison and arithmetic operations.
+3- Can lead to unexpected results if not handled properly.
+
+Examples of Type Coercion:
+
+1. String + Number
+
+JavaScript will automatically or implicitly convert the number to a string if there is the string present in the arithmetic operation.
+
+let n = 5;
+let s = "5";
+let res = n + s;  // JavaScript converts num to string
+console.log(res); 
+console.log(typeof(res))
+
+2. Boolean + Number
+
+JavaScript converts the boolean value into a number, true becomes 1 and false becomes 0, when we perform the arithmetic operations.
+
+let bool = true;
+let n = 10;
+let res = bool + n;  // JavaScript converts boolean to number
+console.log(res);
+
+3. Comparison of Different Types
+
+JavaScript convert the two value of data type into the common type when we compare their values.
+
+let s = "10";
+let n = 10;
+console.log(s == n);  // true, JavaScript converts str to number
+
+4. Boolean Context
+
+Javascript converts non-boolean value into the boolean value when the value is in the if statement.
+
+let s = "";
+if (s) {
+    console.log("This won't print");  // Empty string is falsy
+} else {
+    console.log("This will print");  // Empty string is coerced to false
+}
+--------------------------------------------------------------------------------------------------------------------
