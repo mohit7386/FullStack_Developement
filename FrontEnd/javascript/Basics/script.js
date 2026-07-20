@@ -223,3 +223,13 @@ changeName(person); // argument me as a object paas kar diya and original argume
 
 //aur agar check karein outside function me kya chal raha hai konsi value hai uspe to 
 console.log("Outside Function value: ", person.name);
+
+//Ab agar humein immutability maintain karni hai and hum chahte hain objects and arrays ki value na change ho jisse hamara original array and object safe rahe to uske liye hum use karenge (...) = separate operator which is used to separate the elements of the array/objects and transfer into the new array.
+//example:-
+function modifyArray(arrCopy){
+    arrCopy.push(99); //changing the array 
+    console.log("Inside Function: ",arrCopy);
+}
+let originalArray=[1,2,3,4];
+modifyArray([...originalArray]); //yahan humne separate operator use kiya hai ye kya karega ye originalArray ki ek copy of elements pass karega as a argument because of 'separate operator'. isse benefit hua ki hamara original value safe hai parameter change hone ke baad bhi. aur isko hamesha use karenge to square brackets ke andar hi use karenge.
+console.log("Original Array: ",originalArray);

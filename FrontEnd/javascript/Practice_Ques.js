@@ -75,3 +75,67 @@ function calculateTax(price) {
 
 let totalTax=calculateTax(1000); // Output screen par dikhega: Tax amount is: 180 aur yahan pe bhai tax ki value ko hum naye totalTax variable me use kar rahe store kar rahe hain and jab bhi humein apni calculation ya result ko kisi variable me store karna hota hai then hum hamesha usko return karate hain apne function mein then print karate hain. isiliye return lagana jaruri hai otherwise (undefined) output show karega.
 console.log("Tax amount is: " + totalTax);
+
+//Q 7. Create a function that takes a string as an argument and returns the count of the vowels in the string.
+
+const numOfVow = (countVow) => {
+  const vowels = "aeiou"; //vowels naam ka varible bana liya jisme vowels store kara diye.
+  const found = []; //creating empty array jisme hum unique vowels store karenge.
+//   let count = 0;
+
+  for (let char of countVow.toLowerCase()) { //for of loop for iterating the each character of the string. and toLowercase se saare characters ko lowercase me badal liya jisse "A" and "a" me conflict na ho isiliye.
+     if (vowels.includes(char)) { //includes method check karta hai ki kya har 'character' 'vowel' string me hain present ya nahi. (Ye compare kar rha hai string ke har character ko vowel wali string se)
+      if (!found.includes(char)) { //ye unique elements stored karata hai check karta hai ki kya jo character wo compare kara raha hai wo pehle se found me hai ya nahi. and '!' operator laga hai to that means ki agar wo character pehle se array me nahi hai agar nahi hai to true ho jayegi ye and 'push' method ki help se add kar denge array me uss character ko. (Duplicate elements nahi ayenge array me isiliye aisa kiya)
+        found.push(char);
+      }
+    }
+  }
+  console.log("Total no. of vowels:",found.length); //isme jitne elements hain jo vowel hain string me unki length print ho jayegi.
+  console.log("Vowels present:", found.join(", ")); //.join() method array ke elements ko string me convert kar detaa hai isiliye use karte hain.
+};
+//let resultVow = prompt("Enter any string: ");
+//numOfVow(resultVow);
+numOfVow("Apna College");
+
+//Q 8. Username Checker:-
+
+function checkUsernameLength(username) {
+    if (username.length > 6) {
+        return "Valid Username";
+    } else {
+        return "Too Short";
+    }
+}
+//calling the function
+let resultUserLength=checkUsernameLength("Mohit Pratap Singh");
+console.log(resultUserLength);
+
+//Q 9. Mini Discount Finder:- (Using Single line Arrow Function)
+
+const miniDiscountFinder = (price) => (price * 10)/100; //in single arrow functions we don't need to write the return keyword and braces. JS automatic karti hai dono kaam agar single arrow function hai to.
+//calling the function using variable 
+let netDiscount=console.log(miniDiscountFinder(58));
+
+//Q 10. Max of 2 numbers (Using Single line Arrow functions)
+
+const maxOfTwoNumbers =(num1 , num2) => {
+    if(num1>num2){
+        return num1;
+    }
+    return num2;
+};
+//calling the function 
+let resultOfNum= maxOfTwoNumbers(12,5);
+console.log(`which is greater: ? ${resultOfNum}`);
+
+/*1. Target Sum Pair (Two Sum)Problem: Ek function banao findPair(arr, target).Task: Yeh function ek array aur ek target number lega. Aapko array me aise do numbers dhoondhne hain jinko plus (+) karne par target mile. Wo dono numbers ek array me return karo. Agar koi pair na mile toh null return karo.Example: findPair([1, 4, 45, 6, 10, 8], 16)Output: [6, 10] (Kyunki $6 + 10 = 16$)
+
+2. Find the Missing NumberProblem: Ek function banao findMissing(arr, n).Task: Aapko $1$ se lekar $n$ tak ke numbers ka ek array milega, lekin usme se ek number gayab (missing) hoga. Array sorted nahi hai. Aapko wo gayab number dhoondh kar return karna hai bina kisi built-in sort method ke.Example: findMissing([1, 2, 4, 6, 3, 7], 7) (Yahan $n=7$ hai, yani 1 se 7 tak ginti honi chahiye thi)Output: 5 (Kyunki 5 gayab hai)
+
+3. Remove Duplicates (Bina extra space ke)Problem: Ek function banao removeDuplicates(arr).Task: Ek sorted array me bohot saare duplicate elements hain. Aapko ek naya array return nahi karna hai, balki usi array ke andar se duplicates hatakar sirf unique elements ka array return karna hai.Example: removeDuplicates([1, 1, 2, 2, 3, 4, 4, 5])Output: [1, 2, 3, 4, 5]
+
+4. Rotate Array K-TimesProblem: Ek arrow function banao rotateArray(arr, k).Task: Ek array ko right side me k baar shift (rotate) karna hai.Example: rotateArray([1, 2, 3, 4, 5], 2) (Array ko 2 baar right me ghumao)Round 1: [5, 1, 2, 3, 4]Round 2: [4, 5, 1, 2, 3]Output: [4, 5, 1, 2, 3]
+
+5. Leaders in an ArrayProblem: Ek function banao findLeaders(arr).Task: Array me se saare "Leaders" dhoondhne hain. Ek element "Leader" tab hota hai jab uske right side wale saare elements usse chhote hon. Array ka aakhiri element hamesha leader hota hai.Example: findLeaders([16, 17, 4, 3, 5, 2])Output: [17, 5, 2] (17 ke right me sab chhote hain, 5 ke right me sab chhote hain, aur 2 aakhiri hai) 
+
+ye itne questions ka logic samajhna hai aur try karna hai karne ka khudse */
