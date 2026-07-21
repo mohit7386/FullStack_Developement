@@ -128,9 +128,42 @@ const maxOfTwoNumbers =(num1 , num2) => {
 let resultOfNum= maxOfTwoNumbers(12,5);
 console.log(`which is greater: ? ${resultOfNum}`);
 
-/*1. Target Sum Pair (Two Sum)Problem: Ek function banao findPair(arr, target).Task: Yeh function ek array aur ek target number lega. Aapko array me aise do numbers dhoondhne hain jinko plus (+) karne par target mile. Wo dono numbers ek array me return karo. Agar koi pair na mile toh null return karo.Example: findPair([1, 4, 45, 6, 10, 8], 16)Output: [6, 10] (Kyunki $6 + 10 = 16$)
+//Q 11. Find the all items present in the array with their indexes using for of loop.
+//for of loop generally used of iterable objects to give the values not indexes but if you want the index also using for of loop then you can use 'enteries()' method it helps to iterate each index of the item. and [index , item] - it gives item and item index. 
+const colors = ["red", "green", "blue"];
 
-2. Find the Missing NumberProblem: Ek function banao findMissing(arr, n).Task: Aapko $1$ se lekar $n$ tak ke numbers ka ek array milega, lekin usme se ek number gayab (missing) hoga. Array sorted nahi hai. Aapko wo gayab number dhoondh kar return karna hai bina kisi built-in sort method ke.Example: findMissing([1, 2, 4, 6, 3, 7], 7) (Yahan $n=7$ hai, yani 1 se 7 tak ginti honi chahiye thi)Output: 5 (Kyunki 5 gayab hai)
+for (const [index, color] of colors.entries()) {
+  console.log(`Position ${index} contains ${color}`);
+}
+//12. Target Sum Pair (Two Sum)Problem: Ek function banao findPair(arr, target).Task: Yeh function ek array aur ek target number lega. Aapko array me aise do numbers dhoondhne hain jinko plus (+) karne par target mile. Wo dono numbers ek array me return karo. Agar koi pair na mile toh null return karo.Example: findPair([1, 4, 45, 6, 10, 8], 16)Output: [6, 10] (Kyunki $6 + 10 = 16$). Then find the indexes of the target elements.
+
+const calTwoSum = (arrTwoSum, target) => {
+    for (const [i, num] of arrTwoSum.entries()) {
+        for (const [j, other] of arrTwoSum.entries()) {
+            if (i !== j && num + other === target) {
+                return {
+                    pair: [num, other],
+                    indexes: [i, j]
+                };
+            }
+        }
+    }
+    return null;
+};
+
+const sampleArray = [1, 4, 45, 6, 10, 8];
+const result = calTwoSum(sampleArray, 16);
+console.log(result); // { pair: [6, 10], indexes: [3, 4] }
+
+if (result !== null) {
+    console.log(`Pair found: ${result.pair}`);
+    console.log(`Indexes: ${result.indexes}`);
+} else {
+    console.log("No matching pair found.");
+}
+
+
+/*2. Find the Missing NumberProblem: Ek function banao findMissing(arr, n).Task: Aapko $1$ se lekar $n$ tak ke numbers ka ek array milega, lekin usme se ek number gayab (missing) hoga. Array sorted nahi hai. Aapko wo gayab number dhoondh kar return karna hai bina kisi built-in sort method ke.Example: findMissing([1, 2, 4, 6, 3, 7], 7) (Yahan $n=7$ hai, yani 1 se 7 tak ginti honi chahiye thi)Output: 5 (Kyunki 5 gayab hai)
 
 3. Remove Duplicates (Bina extra space ke)Problem: Ek function banao removeDuplicates(arr).Task: Ek sorted array me bohot saare duplicate elements hain. Aapko ek naya array return nahi karna hai, balki usi array ke andar se duplicates hatakar sirf unique elements ka array return karna hai.Example: removeDuplicates([1, 1, 2, 2, 3, 4, 4, 5])Output: [1, 2, 3, 4, 5]
 
@@ -138,4 +171,4 @@ console.log(`which is greater: ? ${resultOfNum}`);
 
 5. Leaders in an ArrayProblem: Ek function banao findLeaders(arr).Task: Array me se saare "Leaders" dhoondhne hain. Ek element "Leader" tab hota hai jab uske right side wale saare elements usse chhote hon. Array ka aakhiri element hamesha leader hota hai.Example: findLeaders([16, 17, 4, 3, 5, 2])Output: [17, 5, 2] (17 ke right me sab chhote hain, 5 ke right me sab chhote hain, aur 2 aakhiri hai) 
 
-ye itne questions ka logic samajhna hai aur try karna hai karne ka khudse */
+ye itne questions ka logic samajhna hai aur try karna hai karne ka khudse*/
