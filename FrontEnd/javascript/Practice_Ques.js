@@ -132,43 +132,95 @@ console.log(`which is greater: ? ${resultOfNum}`);
 //for of loop generally used of iterable objects to give the values not indexes but if you want the index also using for of loop then you can use 'enteries()' method it helps to iterate each index of the item. and [index , item] - it gives item and item index. 
 const colors = ["red", "green", "blue"];
 
-for (const [index, color] of colors.entries()) {
+for (const [index, color] of colors.entries()) { 
   console.log(`Position ${index} contains ${color}`);
 }
-//12. Target Sum Pair (Two Sum)Problem: Ek function banao findPair(arr, target).Task: Yeh function ek array aur ek target number lega. Aapko array me aise do numbers dhoondhne hain jinko plus (+) karne par target mile. Wo dono numbers ek array me return karo. Agar koi pair na mile toh null return karo.Example: findPair([1, 4, 45, 6, 10, 8], 16)Output: [6, 10] (Kyunki $6 + 10 = 16$). Then find the indexes of the target elements.
 
+//Sample Example of for of loop using entries in objects:-
+const userDetails = {Name: "Mohit" , Age: 26 , Designation: "Software Engineer"};
+console.log(Object.entries(userDetails)); //for objects we write "Object.entries(Object name)" to access the each [Key , Value] pair.
+
+//12. Target Sum Pair (Two Sum)Problem: Ek function banao findPair(arr, target).Task: Yeh function ek array aur ek target number lega. Aapko array me aise do numbers dhoondhne hain jinko plus (+) karne par target mile. Wo dono numbers ek array me return karo. Agar koi pair na mile toh null return karo.Example: findPair([1, 4, 45, 6, 10, 8], 16) Output: [6, 10] (Kyunki $6 + 10 = 16$). Then find the indexes of the target elements.
+//creating a function using arrow function:-
 const calTwoSum = (arrTwoSum, target) => {
-    for (const [i, num] of arrTwoSum.entries()) {
-        for (const [j, other] of arrTwoSum.entries()) {
-            if (i !== j && num + other === target) {
+    for (const [i, num] of arrTwoSum.entries()) { //.entries() humein index return karke de rahi hai and first loop ka current index
+        for (const [j, other] of arrTwoSum.entries()) { //ye second loop ka current index
+            if (i !== j && num + other === target) { //ye 'i!==j' humne isiliye lagaya jisse i and j same index values carry na kar lein because inner loop bhi 0 se hi chal raha hai so, isiliye humne ek condition de di ki 'i!==j' hoga tabhi jaake ye same index values carry nahi karega 
                 return {
-                    pair: [num, other],
-                    indexes: [i, j]
-                };
+                    Values: [num, other], //and ye values and positions isko object ki form me likha hai and yahan 'values' and 'positions' koi bhi keyword ya in-built functions nahi hain ye aisa hum kar sakte hain return ke saath koi error nahi aayega.
+                    Positions: [i, j] //i and j me indexes pade hain and num and other me uss index pe jo item hai wo present hai.
+                }; 
             }
         }
     }
-    return null;
+    return null; //agar match na mile to return null use karenge poora array check hone ke baad and else ka use hum yahan pe nahi kar sakte kyuki wo fir har bar chalega chahein condtion true ho ya na ho wo run hoga hi hoga isiliye poora array check hone ke baad humne loop se bahar return null laga dia agar match na mile to and isko neeche handle kar lenge.
 };
-
+//creating a sample array
 const sampleArray = [1, 4, 45, 6, 10, 8];
-const result = calTwoSum(sampleArray, 16);
-console.log(result); // { pair: [6, 10], indexes: [3, 4] }
-
-if (result !== null) {
-    console.log(`Pair found: ${result.pair}`);
-    console.log(`Indexes: ${result.indexes}`);
+const result = calTwoSum(sampleArray, 18);
+console.log(result); // null because 18 cannot be made by any two different elements
+//and result ko neeche yahan isiliye likha kyuki agar hum isko upar likhte to not defined aata isiliye neeche likha
+if (result !== null) { //agar ye true ho jayegi means match mila to print kara dega return ki value ko.
+    console.log(`Values: ${result.Values}`); 
+    console.log(`Positions: ${result.Positions}`);
 } else {
     console.log("No matching pair found.");
 }
 
+/*13. Find the Missing NumberProblem: Ek function banao findMissing(arr, n).Task: Aapko $1$ se lekar $n$ tak ke numbers ka ek array milega, lekin usme se ek number gayab (missing) hoga. Array sorted nahi hai. Aapko wo gayab number dhoondh kar return karna hai bina kisi built-in sort method ke.Example: findMissing([1, 2, 4, 6, 3, 7], 7) (Yahan $n=7$ hai, yani 1 se 7 tak ginti honi chahiye thi)Output: 5 (Kyunki 5 gayab hai)*/
+//dekho logic ye hai ki hum sabse pehle sum of first (1 to n) natural numbers nikalenge fir jo sum aayega usme se given array ke sum ko minus kar denge to humein missing number mil jaayega. and (n*(n+1))/2 => ye formula calculate karta hai sum of natural numbers from 1 to n.
+const findMissing = (arr, n) => {
+    const expectedSum = (n * (n + 1)) / 2;
+    let actualSum = 0;
+    for (const value of arr) {
+        actualSum += value;
+    }
+    return expectedSum - actualSum;
+};
+//Calling the function
+const missingResult = findMissing([1, 2, 4, 6, 3, 7], 7);
+console.log("Missing number is:", missingResult); // Output: 5
 
-/*2. Find the Missing NumberProblem: Ek function banao findMissing(arr, n).Task: Aapko $1$ se lekar $n$ tak ke numbers ka ek array milega, lekin usme se ek number gayab (missing) hoga. Array sorted nahi hai. Aapko wo gayab number dhoondh kar return karna hai bina kisi built-in sort method ke.Example: findMissing([1, 2, 4, 6, 3, 7], 7) (Yahan $n=7$ hai, yani 1 se 7 tak ginti honi chahiye thi)Output: 5 (Kyunki 5 gayab hai)
+/*14. Remove Duplicates (Bina extra space ke)Problem: Ek function banao removeDuplicates(arr).Task: Ek sorted array me bohot saare duplicate elements hain. Aapko ek naya array return nahi karna hai, balki usi array ke andar se duplicates hatakar sirf unique elements ka array return karna hai.Example: removeDuplicates([1, 1, 2, 2, 3, 4, 4, 5])Output: [1, 2, 3, 4, 5]
+//let's convert this for sorted and unsorted both the arrays:- */
 
-3. Remove Duplicates (Bina extra space ke)Problem: Ek function banao removeDuplicates(arr).Task: Ek sorted array me bohot saare duplicate elements hain. Aapko ek naya array return nahi karna hai, balki usi array ke andar se duplicates hatakar sirf unique elements ka array return karna hai.Example: removeDuplicates([1, 1, 2, 2, 3, 4, 4, 5])Output: [1, 2, 3, 4, 5]
+const removeDuplicates=(arr)=>{
+ //creating an empty array
+let result = [];
+for(let i=0;i<arr.length;i++){ //main array isme hai saare elements
+    let isDuplicate = false;
+    for(let j=0;j<result.length;j++){ //now idhar hum empty array me check kar rahe hain ki kya array ka element empty array me hai ya nahi hai ?
+        if(arr[i]===result[j]){
+            isDuplicate = true;
+            break;
+        }
+    }
+    if(!isDuplicate){
+        result.push(arr[i]); //iska mtlb hua ki agar isduplicate false ho jaye aur wo element agar duplicate nai hai to uss main array ke element ko result naam ke array me add kardo.
+    }
+}
+return result; //return karani padegi kyuki hum function se bahar uss value ko use kar rahe hain console.log kar rahe hain....isiliye hamesha agar aisa karenge to return karani padegi value humein hamesha.
+};
+//calling the function
+let finalResult= removeDuplicates([1,2,3,1,3,2,4,5,6,7,8,6]);
+console.log("After Removing Duplicates from the array: ",finalResult);
 
-4. Rotate Array K-TimesProblem: Ek arrow function banao rotateArray(arr, k).Task: Ek array ko right side me k baar shift (rotate) karna hai.Example: rotateArray([1, 2, 3, 4, 5], 2) (Array ko 2 baar right me ghumao)Round 1: [5, 1, 2, 3, 4]Round 2: [4, 5, 1, 2, 3]Output: [4, 5, 1, 2, 3]
+/*15. Rotate Array K-Times (Right side) me rotate karna Problem: Ek arrow function banao rotateArray(arr, k).Task: Ek array ko right side me k baar shift (rotate) karna hai.Example: rotateArray([1, 2, 3, 4, 5], 2) (Array ko 2 baar right me ghumao)Round 1: [5, 1, 2, 3, 4]Round 2: [4, 5, 1, 2, 3]Output: [4, 5, 1, 2, 3]*/
 
-5. Leaders in an ArrayProblem: Ek function banao findLeaders(arr).Task: Array me se saare "Leaders" dhoondhne hain. Ek element "Leader" tab hota hai jab uske right side wale saare elements usse chhote hon. Array ka aakhiri element hamesha leader hota hai.Example: findLeaders([16, 17, 4, 3, 5, 2])Output: [17, 5, 2] (17 ke right me sab chhote hain, 5 ke right me sab chhote hain, aur 2 aakhiri hai) 
+const rotateArray = (arr , k)=>{
+    //ab ek kaam karte hain array ki ek copy bana lete hain usi me changes karenge jisse original array modify nahi hoga..original array hamara safe rahega.
+let rotatedArray = [...arr]; //using spread operator which helps to separate the array elements aur create a copy of an array.
+for(let i=0;i<k;i++){
+    //So, right Rotate karne ke liye humein array ke last element ko uthake start me daalna hoga
+    let lastElementofArray = rotatedArray.pop(); //pop method last element ko remove karta hai array me se and return karta hai removed element ko.
+    //ab jo removed (last element) hai usko humein array ke starting me add karna hai jisko hum unshift() array method hai uski help se karenge jo array me element ko start me add karta hai...
+    rotatedArray.unshift(lastElementofArray);
+}
+return rotatedArray;
+};
+//calling the function:-
+console.log("Rotated Array: ",rotateArray([1,2,3,4,5,6] , 4)); //print the rotated array.
+
+/*16. Leaders in an ArrayProblem: Ek function banao findLeaders(arr).Task: Array me se saare "Leaders" dhoondhne hain. Ek element "Leader" tab hota hai jab uske right side wale saare elements usse chhote hon. Array ka aakhiri element hamesha leader hota hai.Example: findLeaders([16, 17, 4, 3, 5, 2])Output: [17, 5, 2] (17 ke right me sab chhote hain, 5 ke right me sab chhote hain, aur 2 aakhiri hai) 
 
 ye itne questions ka logic samajhna hai aur try karna hai karne ka khudse*/
