@@ -224,12 +224,69 @@ changeName(person); // argument me as a object paas kar diya and original argume
 //aur agar check karein outside function me kya chal raha hai konsi value hai uspe to 
 console.log("Outside Function value: ", person.name);
 
-//Ab agar humein immutability maintain karni hai and hum chahte hain objects and arrays ki value na change ho jisse hamara original array and object safe rahe to uske liye hum use karenge (...) = separate operator which is used to separate the elements of the array/objects and transfer into the new array.
+//Ab agar humein mutability maintain karni hai and hum chahte hain objects and arrays ki value na change ho jisse hamara original array and object safe rahe to uske liye hum use karenge (...) = spread operator which is used to separate the elements of the array/objects and transfer into the new array.
 //example:-
 function modifyArray(arrCopy){
     arrCopy.push(99); //changing the array 
     console.log("Inside Function: ",arrCopy);
 }
 let originalArray=[1,2,3,4];
-modifyArray([...originalArray]); //yahan humne separate operator use kiya hai ye kya karega ye originalArray ki ek copy of elements pass karega as a argument because of 'separate operator'. isse benefit hua ki hamara original value safe hai parameter change hone ke baad bhi. aur isko hamesha use karenge to square brackets ke andar hi use karenge.
+modifyArray([...originalArray]); //yahan humne spread operator use kiya hai ye kya karega ye originalArray ki ek copy of elements pass karega as a argument because of 'separate operator'. isse benefit hua ki hamara original value safe hai parameter change hone ke baad bhi. aur isko hamesha use karenge to square brackets ke andar hi use karenge.
 console.log("Original Array: ",originalArray);
+
+//working of 'this' keyword and function binding..
+const personDetails = {  
+    name: "Mohit",
+    greet: function(){
+        console.log('Hello, '+ this.name); //this ka matlab hota hai current object ko refer karna. Jab aap object ke andar koi function likhte ho to 'this' us object ko point karta hai jis object me wo likha hua hota hai.
+        //this kaam aise karta hai - jaise yahan pe hum call karte hain object ke andar function ko to this automatically person object ko refer karta hai.
+
+//person ek object hai
+//greet us object ka property hai
+//aur us property ka value ek function hai
+//greet ek function hai and object ke andar likha hua hai to use kehte hain 'method' hamesha jab bhi koi function kisi object ke andar likha hoga to wo method kehlayega.
+    }
+};
+//calling the function through object
+personDetails.greet(); //calling the greet function -> kyuki object ke kisi bhi value ko access karne ke liye hum [object name.key] likhte hain but yahan pe name ki value greet function me padi hai isiliye direct [objectname.key] access kar liya humne.
+
+//Function Binding in javascript
+const Person={
+    name: "Mohit",
+    greet: function(){
+        console.log('Hello,' + this.name); //yahan this jo hai wo iss current object(person) ko refer kar raha hai.
+    }
+};
+//creating another object 
+const anotherPerson={
+    name: "Lucky"
+};
+//accessing the object 
+const greetFn = Person.greet.bind(anotherPerson); //ab dekho humne another object ko pehle object ke saath bind kar diya isse hua ye ki 'this' ab pehle wale obejct ko refer na krke ab doosre wale object ko refer karega jisse 'this.name' ki value 'Mohit' na hoke 'Lucky' ho jayegi. iska mtlb ki objects ki values change ho jati hai agar bind kar denge to and ye 'bind' permanently bind karte hain.
+//Bind karne ke 3 main tareeke hain:-
+//1- call()
+//2- apply()
+//3- bind() - ye humne upar dekh hi liya hai
+const greetFnC = Person.greet.call(anotherPerson); //ye temporary base pe bind karta hai permanently nahi karta
+const greetFnA = Person.greet.apply(anotherPerson); //ye temporary base pe bind karta hai permanently nahi karta
+greetFn();
+
+//forEach() loop or method - Ye JS mein ek array method hai jo har element par ek bar callback run karta hai. aur ye higher-order method bhi hai ye kisi doosre function (callback function) ko input leta hai and usse kaam karne ke liye chalata hai.
+//return value:- ye hamesha undefined return karta hai, iske result ko hum kisi variable me store nahi kar sakte.
+//Modifies original array:- Nahi, ye original array ko modify nahi karta jab tak hum khud array ke indexes ko manual mutate na karein.
+//A Callback is a function passed as an argument to another function.
+//Isme break/continue work nhi karte error aayega kyuki isko hum beech me stop nahi kar sakte.
+//In JS, Functions ko hum as a parameter bhi paas kar sakte hain and return bhi kara sakte hain ye bilkul allowed hai JS mein.
+//
+
+//Example 1: 
+let nums=[10,20,30];
+nums.forEach(function(value , index){
+    console.log(`Index: ${index} = Value: ${value}`);
+});
+//Using arrow function:
+let fruitsName = ["Apple" , "Banana" , "Mango"];
+fruitsName.forEach((fruit, index)=>{ //forEach ek method hai isko direct use nahi kar sakte dot laga ke kisi object ya DS ke saath hi isko access kar sakte hain.
+    console.log(fruit, index);
+});
+

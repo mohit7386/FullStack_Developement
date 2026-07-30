@@ -221,6 +221,25 @@ return rotatedArray;
 //calling the function:-
 console.log("Rotated Array: ",rotateArray([1,2,3,4,5,6] , 4)); //print the rotated array.
 
-/*16. Leaders in an ArrayProblem: Ek function banao findLeaders(arr).Task: Array me se saare "Leaders" dhoondhne hain. Ek element "Leader" tab hota hai jab uske right side wale saare elements usse chhote hon. Array ka aakhiri element hamesha leader hota hai.Example: findLeaders([16, 17, 4, 3, 5, 2])Output: [17, 5, 2] (17 ke right me sab chhote hain, 5 ke right me sab chhote hain, aur 2 aakhiri hai) 
+/*16. Leaders in an ArrayProblem: Ek function banao findLeaders(arr).Task: Array me se saare "Leaders" dhoondhne hain. Ek element "Leader" tab hota hai jab uske right side wale saare elements usse chhote hon. Array ka aakhiri element hamesha leader hota hai.Example: findLeaders([16, 17, 4, 3, 5, 2])Output: [17, 5, 2] (17 ke right me sab chhote hain, 5 ke right me sab chhote hain, aur 2 aakhiri hai)*/
 
-ye itne questions ka logic samajhna hai aur try karna hai karne ka khudse*/
+const leadersArray=(arr)=>{
+    //creating an empty array so that original array modify na ho
+    let leaders = [];
+    let maxFromRight = -Infinity; //Special numeric values in JS that represent positive and negative infinity. [-Infinity means sabse choti value javascript me mtlb isse chota aur kuch nahi ho sakta]
+    //[Infinity means sabse badi value JS me mtlb isse badi koi value nhi ho sakti hai].
+    
+    //array ko traverse karane ke liye loop chalayenge but loop hamesha end element se first element tak run karenge isme. logic yahi hai ki agar koi element leader hai uske baad ke saare element usse chote honge and isme hum reverse loop chalate hain last element se first element tak.
+    for(let i = arr.length-1;i>=0;i--){
+        if(arr[i] > maxFromRight){
+            leaders.push(arr[i]); //agar condition true hoti hai agar maxFromRight se array ka element bada hota hai to usko leaders wale array me add kar denge.
+
+            //and usi element ko 'maxFromRight' me daal denge 
+            maxFromRight=arr[i]; 
+        }
+    }
+    //return kar denge leaders array ko reverse karke.
+    return leaders.reverse();
+};
+//calling the function
+console.log("Leaders Elements: ",leadersArray([2,5,17,3,4,16])); //print the leaders array
