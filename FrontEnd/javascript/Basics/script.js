@@ -277,16 +277,166 @@ greetFn();
 //A Callback is a function passed as an argument to another function.
 //Isme break/continue work nhi karte error aayega kyuki isko hum beech me stop nahi kar sakte.
 //In JS, Functions ko hum as a parameter bhi paas kar sakte hain and return bhi kara sakte hain ye bilkul allowed hai JS mein.
-//
+
+//Why do we use forEach() method:-
+//1- It is easy to read and understand.
+//2- It is less code to write.
+//3- It is more efficient than for loop.
+//4- forEach() array ke har element pe callback function ko call karta hai and ye hamesha original array ke elements pe hi kaam karta hai and iski help se hum original array ke elements ko modify bhi kar sakte hain.
+//5- ye hamesha undefined return karta hai agar iske result ko kisi variable me store karne ki koshish karenge to error aayega. isiliye hum isko kisi variable me store nahi karte hain. hum isko direct hi use karte hain.
+//6- isme loop ki tarah limit lagane ki jarurat nahi padhti hai and icrement/decrement statement ki bhi jarurat nahi padhti hai ye automatic hi saare elements pe iterate kar leta hai and stop bhi automatically ho jaata hai saare elements pe iterate karne ke baad. isiliye ye loop ki tarah kaam karta hai but ye loop nahi hai ye ek method hai jo array ke elements pe kaam karta hai.
 
 //Example 1: 
 let nums=[10,20,30];
 nums.forEach(function(value , index){
     console.log(`Index: ${index} = Value: ${value}`);
 });
+
 //Using arrow function:
 let fruitsName = ["Apple" , "Banana" , "Mango"];
-fruitsName.forEach((fruit, index)=>{ //forEach ek method hai isko direct use nahi kar sakte dot laga ke kisi object ya DS ke saath hi isko access kar sakte hain.
+fruitsName.forEach((fruit, index)=>{ //forEach ek method hai isko direct use nahi kar sakte dot laga ke kisi object ya DS ke saath hi isko access kar sakte hain. and 'fruit' yaha pe ek variable hai jo ki array ke elements ko represent kar raha hai.
     console.log(fruit, index);
 });
 
+//Array ke andar hum object store kar sakte hain.
+//Lekin, Array khud key-value pairs ka structure nahi hota, wo ordered list hota hai.
+//some more array methods:-
+//forEach() method jo hai wo array ka hi family member hai and ye map, filter, reduce bhi array ke hi methods hain joki -> array.prototype ke andar aate hain.
+//map() , filter() , reduce().
+//map() - ye ek aisa method hai jo array ke har element pe ek callback function ko call karta hai and uske result ko ek naye array me store karta hai and return karta hai. ye original array ko modify nahi karta hai. ye hamesha ek naya array return karta hai jisme modified values hoti hain. and ye data ko transform bhi karta hai. iske result ko hum kisi variable me store kar sakte hain.  
+//Kaam: Array ke har element par jaakar usko change/transform karta hai.
+//Return Value: Naya Array (Jiski length HAMESHA original array jitni hi hoti hai).
+//Rule: Callback ke andar se return karna compulsory hai.
+
+const Numbers=[1,2,3,4,5]; //Original array ko modify nahi karega. data ko transform krke new array me return karega.
+const doubled = Numbers.map(num => num*5); //data transform kiya na yahan pe and ab iske result ko ye naye array me daal dega.
+console.log(doubled);
+
+//Filter:- 
+//Kaam: Array ke har element par jaakar condition check karta hai. Agar condition true hui toh element ko select kar leta hai.
+//Return Value: Naya Array (Sirf selected/pass hone wale elements ka jo true hote hain).
+//Rule: Callback ke andar se boolean condition (true/false) return hoti hai.
+
+const filterNumbers=[1,2,3,4,5,6,7,8];
+const findEven = (Num) =>{
+    return Num%2===0;
+};
+const even = filterNumbers.filter(findEven); //callback function - findEven
+console.log("Even Numbers after filtering the array: ",even);
+
+//Reducue:-
+//Kaam: Poore array ke saare elements ko combine/accumulate karke ek single output banana.
+//Return Value: Single Value (Number, String, Object, ya Naya Array).
+//Rule: Do main cheezein leta hai — accumulator (acc) aur currentValue (curr), plus ek initialValue.
+
+//Array ka total sum nikalna:-
+const numbersSum=[1,2,3,4,5];
+//syntax
+//array.reduce(accumulator , currentValue) => accumulator + currentValue , initialValue);
+const totalSum = numbersSum.reduce((Prev , Curr) => Prev + Curr); //jab bhi single line arrow function hoga to humein '}' and 'return' likhne ki jarurat nahi hai aise hi ho jaayega, single line arrow function to.
+console.log("Total Sum of the elements are: ",totalSum);
+//To basically jab bhi humein array ke saare elements ko combine karke koi ek single value chahiye ho like 'sum' of array to hum hamesha 'reduce' use karenge
+
+//To find the maximum number from the array using reduce method:-
+const findMax = [9,12,45,32,56,76,1,2,7];
+const maxNum = findMax.reduce((Prev , Curr) => {
+    //Using ternary operator
+    return (Prev > Curr)? Prev : Curr;
+});
+console.log("Maximum number from the array is: ",maxNum);
+
+//find() — Pehla Matching Element Dhoondna
+//Kyun use hota hai: Jab tumhe poore array me se kisi condition par fit hone waala pehla (first) element dhoondhna ho.
+//Return value: Pehla matching element (agar nahi mila toh undefined).
+
+const userData =[ //creating an array
+    { id: 1 , name: "Mohit"},
+    { id: 2 , name: "Lucky"},
+    { id: 3 , name: "Krish"}
+];
+const listData = [1,2,3,4,5,6,7,8,9];
+//ID = 2 wala search karna hai poore array mein
+const userFind = userData.find(u=> u.id===2); //print the true value
+const userFind2 = userData.find(u=> u.id===4); //agar condition false ho jaye and element na mile to ye undefined return karega.
+console.log(userFind);
+console.log(userFind2); //undefined
+console.log(typeof userData);
+console.log(typeof listData);
+console.log(Array.isArray(listData)); //for checking the correct type of data in array.
+
+/*1. Object Kya Hota Hai?
+Variables aur Arrays sirf single values ya unki list hold karte hain. Real world me jab hume kisi cheez ki poori profile banani hoti hai (jaise Student, Product, User), toh hum Object use karte hain.
+
+Yeh data ko key : value pairs me store karta hai.*/
+
+const userDetai = {
+    name: "Rahul",
+    age: 22,
+    isLoggedIn: true,
+    skills: ["JS", "React"]
+};
+
+/*2. Properties Access, Add & Delete Kaise Karein?
+
+Isme do tareeke hote hain:
+
+Dot Notation (obj.key): Normal properties ke liye.
+Bracket Notation (obj["key"]): Variable waali keys ya space waali keys ke liye.*/
+
+const personDetai = {
+    name: "Amit",
+    "user role": "Admin" //jab bhi humein space deke koi bhi key name likhna hota hai to hamesha hum usko double quotes me likhte hain. otherwise error aayega.
+};
+
+// Accessing Values
+console.log(person.name);          // Dot Notation -> "Amit"
+console.log(person["user role"]);   // Bracket Notation -> "Admin" jab bhi kisi Key name me space hota hai to usko hamesha square bracket notation ke saath access karte hain. otherwise error aayega.
+
+// Dynamic Key Access (Jab key kisi variable me store ho) to variable wali keys ko bhi access karne ke liye hamesha square brackets ka use karte hain.
+const myKey = "name";
+console.log(person[myKey]);        // Output: "Amit" (person.myKey kaam nahi karega)
+
+// Add & Update
+person.age = 25;                   // New key add hui
+person.name = "Amit Sharma";       // Value update hui
+
+// Delete Property
+delete person["user role"];        // Key remove ho gayi
+
+/*3. Object Methods & this Keyword
+
+Jab kisi object ke andar function likha jaye, toh use Method bolte hain.
+Object ke andar uski apni properties ko use karne ke liye this keyword lagate hain (this matlab "yeh current object").*/
+
+const bankAccount = {
+    holder: "Priya",
+    balance: 5000,
+
+    // Method
+    showDetails: function() { //this function is a method
+        // 'this.holder' ka matlab is object ka holder name 
+        console.log(`Holder: ${this.holder}, Balance: ₹${this.balance}`); //this refers to it's current object means this iss bankAccount wale current object ko refer karega.
+    }
+};
+
+bankAccount.showDetails(); // Output: Holder: Priya, Balance: ₹5000
+
+/*⚠️ Important: Object method ke liye normal function() use karna safe hota hai. Arrow function () => {} me this object ko point nahi karta.*/
+
+/*4. Static Object Utility Methods (keys, values, entries)
+Real-world API responses ko process karne ke liye in teeno ka sabse zyada use hota hai:*/
+
+const product = { name: "Laptop", price: 40000, brand: "Dell" };
+
+// 1. Object.keys() -> Saari Keys ka Array
+console.log("Array of all the keys present: ",Object.keys(product)); 
+// Output: ["name", "price", "brand"]
+
+// 2. Object.values() -> Saari Values ka Array
+console.log("Array of all the values present: ",Object.values(product)); 
+// Output: ["Laptop", 40000, "Dell"]
+
+// 3. Object.entries() -> Key-Value pairs ka Array
+console.log("Array with all key-value in the form of pair: ",Object.entries(product)); 
+// Output: [ ["name", "Laptop"], ["price", 40000], ["brand", "Dell"] ]
+alert("HEllo Alert!"); //creating a alert pop up
