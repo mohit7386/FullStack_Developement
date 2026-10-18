@@ -439,4 +439,91 @@ console.log("Array of all the values present: ",Object.values(product));
 // 3. Object.entries() -> Key-Value pairs ka Array
 console.log("Array with all key-value in the form of pair: ",Object.entries(product)); 
 // Output: [ ["name", "Laptop"], ["price", 40000], ["brand", "Dell"] ]
-alert("HEllo Alert!"); //creating a alert pop up
+alert("HEllo Alert!"); //creating a al//ert pop up
+
+//DOM (Document Object Model)
+/*What is the DOM?
+DOM stands for Document Object Model. It’s the browser’s in-memory, tree-shaped representation of an HTML page.
+
+For example, the browser reads this HTML:
+
+<body>
+  <h1>Hello</h1>
+  <p>Welcome!</p>
+</body>
+
+…and represents it as a tree of objects:
+
+document
+└── html
+    └── body
+        ├── h1
+        │   └── "Hello"
+        └── p
+            └── "Welcome!"
+
+JavaScript can use that representation to find, change, add, or remove page elements.
+
+How JavaScript works with the DOM
+The browser creates the DOM while loading the page. JavaScript then accesses it through the global document object.
+
+For example, to find the heading and change its text:
+
+<h1 id="title">Hello</h1>
+
+<script>
+  const heading = document.querySelector("#title");
+  heading.textContent = "Hello from JavaScript!";
+</script>
+
+querySelector("#title") finds the element with id="title". Setting its textContent changes the text shown on the page.
+
+You can also update styles or attributes:
+
+heading.style.color = "blue";
+heading.setAttribute("title", "This is the page heading");
+
+Responding to user actions
+The DOM lets JavaScript respond to events such as clicks, typing, and form submissions.
+
+<button id="greetButton">Click me</button>
+<p id="message"></p>
+
+<script>
+  const button = document.querySelector("#greetButton");
+  const message = document.querySelector("#message");
+
+  button.addEventListener("click", () => {
+    message.textContent = "You clicked the button!";
+  });
+</script>
+
+Here’s what happens:
+
+1- JavaScript finds the button and paragraph in the DOM.
+2- It registers a click-event listener on the button.
+3- When the user clicks, the browser fires the event.
+4- The listener runs and updates the paragraph’s DOM element.
+5- The browser displays the updated page.
+
+Adding new elements
+JavaScript can create and add elements, too
+
+const newItem = document.createElement("li");
+newItem.textContent = "Learn the DOM";
+
+document.querySelector("ul").appendChild(newItem);
+
+Why do we need the DOM?
+Without the DOM, JavaScript would have no standard way to work with the page’s content and structure. The DOM makes it possible to:
+
+1- Update text, styles, and attributes without reloading the page
+2- React to user actions
+3- Show or hide content
+4- Build menus, forms, lists, and other interactive features
+5-Add or remove page elements dynamically
+
+In short: HTML provides the page structure, the browser turns it into the DOM, and JavaScript uses the DOM to make the page interactive.
+
+For scripts that need to find page elements, place the <script> near the end of <body> or load it with defer:
+<script src="script.js" defer></script>*/
