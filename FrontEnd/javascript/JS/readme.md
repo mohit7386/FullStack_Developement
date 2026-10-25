@@ -457,4 +457,218 @@ if (s) {
 } else {
     console.log("This will print");  // Empty string is coerced to false
 }
---------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------
+//DOM (Document Object Model)
+/*What is the DOM?
+DOM stands for Document Object Model. It’s the browser’s in-memory, tree-shaped representation of an HTML page.
+
+For example, the browser reads this HTML:
+
+<body>
+  <h1>Hello</h1>
+  <p>Welcome!</p>
+</body>
+
+…and represents it as a tree of objects:
+
+document
+└── html
+    └── body
+        ├── h1
+        │   └── "Hello"
+        └── p
+            └── "Welcome!"
+
+JavaScript can use that representation to find, change, add, or remove page elements.
+
+How JavaScript works with the DOM
+The browser creates the DOM while loading the page. JavaScript then accesses it through the global document object.
+
+For example, to find the heading and change its text:
+
+<h1 id="title">Hello</h1>
+
+<script>
+  const heading = document.querySelector("#title");
+  heading.textContent = "Hello from JavaScript!";
+</script>
+
+querySelector("#title") finds the element with id="title". Setting its textContent changes the text shown on the page.
+
+You can also update styles or attributes:
+
+heading.style.color = "blue";
+heading.setAttribute("title", "This is the page heading");
+
+Responding to user actions
+The DOM lets JavaScript respond to events such as clicks, typing, and form submissions.
+
+<button id="greetButton">Click me</button>
+<p id="message"></p>
+
+<script>
+  const button = document.querySelector("#greetButton");
+  const message = document.querySelector("#message");
+
+  button.addEventListener("click", () => {
+    message.textContent = "You clicked the button!";
+  });
+</script>
+
+Here’s what happens:
+
+1- JavaScript finds the button and paragraph in the DOM.
+2- It registers a click-event listener on the button.
+3- When the user clicks, the browser fires the event.
+4- The listener runs and updates the paragraph’s DOM element.
+5- The browser displays the updated page.
+
+Adding new elements
+JavaScript can create and add elements, too
+
+const newItem = document.createElement("li");
+newItem.textContent = "Learn the DOM";
+
+document.querySelector("ul").appendChild(newItem);
+
+Why do we need the DOM?
+Without the DOM, JavaScript would have no standard way to work with the page’s content and structure. The DOM makes it possible to:
+
+1- Update text, styles, and attributes without reloading the page
+2- React to user actions
+3- Show or hide content
+4- Build menus, forms, lists, and other interactive features
+5-Add or remove page elements dynamically
+
+In short: HTML provides the page structure, the browser turns it into the DOM, and JavaScript uses the DOM to make the page interactive.
+
+For scripts that need to find page elements, place the <script> near the end of <body> or load it with defer:
+<script src="script.js" defer></script>
+
+With the help of defer browser HTML ki rendering ko stop nahi karta jabtak JS load nhi ho jaati wo background me saath ke saath JS ko download karta rehta hai and HTML rendering ko continue rakhta jisse page loads fast hota hai.
+Always make sure ya to aap script ko body closing tag se pehle rakhein ya fir defer ka use karein and defer ka jab use karenge aap script tag ko head ke andar likhenge jisse browser ko pehle hi JS file mil jaaye aur wo background me JS file ko download karna shuru kar de and saath hi neeche poore HTML ko saath ke saath parse bhi karta rahe jisse time bachega aur page fast load hoga. Waise to aap defer use krke script ko kahin bhi rakh skte ho but sabse best jagah head tag ke andar rakhna hi hai.
+
+Benefits of using defer in JS:-
+1- Fast Page load
+2- No DOM Errors
+3- Safe for Dependencies => agar script2 pehle chalne ke liye script1 pe depoend hai to defer dono ka order sahi rakhta hai.
+4- Head Tag me safe use
+5- Best for Application Logic 
+
+JavaScript can use the DOM to:
+
+1- Find elements
+2- Read or change text
+3- Change styles and attributes
+4- Add or remove elements
+5- Respond to clicks, typing, and other events
+
+The DOM is not the HTML file itself. It is the browser’s live, in-memory representation of the page. If JavaScript changes the DOM, the browser updates what the user sees.
+
+JavaScript me is pure ped ko access karne ka ek hi rasta hota hai: document variable.
+Agar document nahi hota, toh JS ko pata hi nahi hota ki screen par kya chal raha hai.
+
+Step 3: Screen par kisi cheez ko pakadna (Selecting Elements)
+JavaScript se screen par kisi cheez ka rang badalna hai ya text change karna hai, toh sabse pehla kaam kya hai? Usko ungli dikha kar pakadna.
+
+Maan lo tumhare paas ye HTML hai:
+
+HTML
+<h1 id="heading">Hello World</h1>
+<p class="description">Ye pehla paragraph hai</p>
+<p class="description">Ye doosra paragraph hai</p>
+<button id="btn">Click Me</button>
+
+1. ID se pakadna (querySelector with #):
+ID pure page me ek hi hoti hai (jaise tumhara Roll Number).
+
+JavaScript
+const mainHeading = document.querySelector("#heading");
+console.log(mainHeading); // Output: <h1 id="heading">Hello World</h1>
+Yahan # ka matlab hai: "Browser, ID dhundho jiska naam 'heading' hai."
+
+2. Class se pakadna (querySelector with .):
+Class bohot saari cheezon ki same ho sakti hai (jaise class me sabne 'blue shirt' pehni ho).
+
+JavaScript
+const pehlaPara = document.querySelector(".description");
+Dhyan se suno: Page par do <p class="description"> the. Lekin querySelector hamesha sirf sabse pehle wale ko pakadta hai aur wahi ruk jata hai.
+
+3. Saari ek jaisi cheezon ko ek sath pakadna (querySelectorAll):
+Agar tumhe dono paragraph pakadne hain:
+
+JavaScript
+const saarePara = document.querySelectorAll(".description");
+console.log(saarePara);
+Yeh tumhe dega ek NodeList (ek list/array jisme dono paragraph bandhe honge).
+
+Step 4: Pakadne ke baad uske sath chhed-chhaad karna (Manipulating)
+Ab tumne element ko pakad liya. Ab tum uske sath kya-kya kar sakte ho?
+
+1. Text badalna:
+JavaScript
+const heading = document.querySelector("#heading");
+
+// Text badal do:
+heading.textContent = "Welcome to Backend Engineering!";
+
+2. Styling badalna:
+JavaScript
+// Direct CSS lagana:
+heading.style.color = "blue";
+heading.style.backgroundColor = "yellow";
+heading.style.fontSize = "30px"; // JS me font-size nahi, camelCase (fontSize) likhte hain
+Lekin industry me element.style direct bohot kam use karte hain, kyunki aise code ganda ho jata hai. Industry me hum Class lagate aur hatate hain.
+
+3. Class lagana aur hatana (classList):
+Socho tumne CSS me ek class pehle se bana rakhi hai:
+
+CSS
+.danger {
+    color: red;
+    font-weight: bold;
+}
+
+Ab JS se us class ko button ya text par jab marzi chipkao ya hatao:
+
+JavaScript
+const heading = document.querySelector("#heading");
+
+heading.classList.add("danger");    // Class lag gayi (text laal ho gaya)
+heading.classList.remove("danger"); // Class hat gayi (normal ho gaya)
+heading.classList.toggle("danger"); // Switch ki tarah: lagi hai toh hata dega, nahi hai toh laga dega
+Step 5: Naya Element Banana aur Screen par Chipkana (Sabse Important)
+Ab socho tum Instagram bana rahe ho. Jab koi naya comment karta hai, toh wo comment HTML file me pehle se likha nahi hota. JavaScript us comment ka box banati hai aur screen par chipkati hai.
+
+Ye 3 steps me hota hai:
+
+Step 1: Memory me dabba banao
+JavaScript
+const nayaComment = document.createElement("p");
+// Abhi ye sirf browser ki RAM me bana hai, screen par kisi ko nahi dikh raha
+
+Step 2: Us dabbe me maal bharo (Text aur Style)
+JavaScript
+nayaComment.textContent = "Bhai tutorial bohot badiya hai!";
+nayaComment.classList.add("comment-style");
+
+Step 3: Screen par kisi parent ke andar chipkao (appendChild ya append)
+Maan lo screen par ek box hai <div id="comment-box"></div>:
+
+JavaScript
+// Pehle us box ko pakdo
+const commentBox = document.querySelector("#comment-box");
+
+// Uske andar naya comment daal do
+commentBox.appendChild(nayaComment);
+// BUM! Ab ye screen par dikhne laga.
+Ab ek bar khud socho (Checkpoint)
+Agar tumhe screen par ek naya button jodna ho jisme likha ho "Delete Account" aur uska background red ho, toh tum kya karoge?
+
+document.createElement("button") se button banaoge.
+
+Uska text textContent = "Delete Account" karoge.
+
+Us par class ya style lagaoge.
+
+document.body.appendChild(...) se screen par chipkaoge.

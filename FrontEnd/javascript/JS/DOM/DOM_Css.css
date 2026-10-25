@@ -1,0 +1,20 @@
+.heading{
+    color: white;
+    background-color: black;
+    text-align: center;
+}
+div{
+    margin: 30px 410px 0px 410px;
+}
+#demo, h2{
+    color: whitesmoke !important;
+    text-align: center;
+}
+p{
+    background-color: lightgray;
+    color: black;
+    padding: 20px 17px 10px 20px;
+}
+body{
+    background-color: black;
+}
